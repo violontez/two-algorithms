@@ -4,14 +4,14 @@
 
 using namespace std;
 
-// Алгоритм Прима-Краскала для минимального остовного дерева
+// РђР»РіРѕСЂРёС‚Рј РџСЂРёРјР°-РљСЂР°СЃРєР°Р»Р° РґР»СЏ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ РѕСЃС‚РѕРІРЅРѕРіРѕ РґРµСЂРµРІР°
 void primMST(const vector<vector<int>>& graph) {
     int V = graph.size();
     vector<int> parent(V, -1);
     vector<int> key(V, INT_MAX);
     vector<bool> mstSet(V, false);
 
-    key[0] = 0; // Начинаем с вершины 0
+    key[0] = 0; // РќР°С‡РёРЅР°РµРј СЃ РІРµСЂС€РёРЅС‹ 0
 
     for (int count = 0; count < V - 1; ++count) {
         int minKey = INT_MAX, minIndex = -1;
@@ -33,18 +33,18 @@ void primMST(const vector<vector<int>>& graph) {
         }
     }
 
-    // Вывод массива ребер и длины дерева
-    cout << "Массив ребер в минимальном остовном дереве:\n";
+    // Р’С‹РІРѕРґ РјР°СЃСЃРёРІР° СЂРµР±РµСЂ Рё РґР»РёРЅС‹ РґРµСЂРµРІР°
+    cout << "РњР°СЃСЃРёРІ СЂРµР±РµСЂ РІ РјРёРЅРёРјР°Р»СЊРЅРѕРј РѕСЃС‚РѕРІРЅРѕРј РґРµСЂРµРІРµ:\n";
     for (int i = 1; i < V; ++i)
-        cout << parent[i] << " - " << i << "  Вес: " << graph[i][parent[i]] << endl;
+        cout << parent[i] << " - " << i << "  Р’РµСЃ: " << graph[i][parent[i]] << endl;
 
     int minCost = 0;
     for (int i = 0; i < V; ++i)
         minCost += key[i];
-    cout << "Длина минимального остовного дерева: " << minCost << endl;
+    cout << "Р”Р»РёРЅР° РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ РѕСЃС‚РѕРІРЅРѕРіРѕ РґРµСЂРµРІР°: " << minCost << endl;
 }
 
-// Алгоритм Дейкстры для кратчайших путей
+// РђР»РіРѕСЂРёС‚Рј Р”РµР№РєСЃС‚СЂС‹ РґР»СЏ РєСЂР°С‚С‡Р°Р№С€РёС… РїСѓС‚РµР№
 void dijkstra(const vector<vector<int>>& graph, int src) {
     int V = graph.size();
     vector<int> dist(V, INT_MAX);
@@ -71,20 +71,20 @@ void dijkstra(const vector<vector<int>>& graph, int src) {
         }
     }
 
-    // Вывод кратчайших путей от src до всех других вершин
-    cout << "Кратчайшие пути от вершины " << src << ":\n";
+    // Р’С‹РІРѕРґ РєСЂР°С‚С‡Р°Р№С€РёС… РїСѓС‚РµР№ РѕС‚ src РґРѕ РІСЃРµС… РґСЂСѓРіРёС… РІРµСЂС€РёРЅ
+    cout << "РљСЂР°С‚С‡Р°Р№С€РёРµ РїСѓС‚Рё РѕС‚ РІРµСЂС€РёРЅС‹ " << src << ":\n";
     for (int i = 0; i < V; ++i)
-        cout << "до " << i << " : " << dist[i] << endl;
+        cout << "РґРѕ " << i << " : " << dist[i] << endl;
 }
 
 int main() {
     setlocale(LC_ALL, "RUS");
     int V;
-    cout << "Введите количество вершин в графе: ";
+    cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ РІ РіСЂР°С„Рµ: ";
     cin >> V;
 
     vector<vector<int>> graph(V, vector<int>(V));
-    cout << "Введите матрицу расстояний графа:\n";
+    cout << "Р’РІРµРґРёС‚Рµ РјР°С‚СЂРёС†Сѓ СЂР°СЃСЃС‚РѕСЏРЅРёР№ РіСЂР°С„Р°:\n";
     for (int i = 0; i < V; ++i)
         for (int j = 0; j < V; ++j)
             cin >> graph[i][j];
@@ -92,7 +92,7 @@ int main() {
     primMST(graph);
 
     int source;
-    cout << "Введите вершину для алгоритма Дейкстры: ";
+    cout << "Р’РІРµРґРёС‚Рµ РІРµСЂС€РёРЅСѓ РґР»СЏ Р°Р»РіРѕСЂРёС‚РјР° Р”РµР№РєСЃС‚СЂС‹: ";
     cin >> source;
     dijkstra(graph, source);
 
